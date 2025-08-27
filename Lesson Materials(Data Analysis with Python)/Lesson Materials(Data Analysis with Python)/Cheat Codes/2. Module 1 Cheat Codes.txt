@@ -1,0 +1,172 @@
+# 1. 0 Introduction
+
+print("Welcome to Python class")
+
+a = 6
+b = 10
+c = a+b
+print(c)
+
+Awesomeh
+
+# 2. 0 Data Types
+
+# Integer
+
+type(25)
+
+type(1223)
+
+# Float
+
+type(124.6)
+
+type(0.5)
+
+125 - 12.5
+
+# Boolean
+
+type(True)
+
+type(False)
+
+type(True)
+
+# String
+
+type("Awesome")
+
+type("123awe")
+
+print("Awesome Emmanuel")
+
+"Awesome Emmanuel"
+
+a = 6
+a
+
+"Awesome emmanuel".upper()
+
+"Awesome EmmAnuel".lower()
+
+"Emmanuel".count("m")
+
+"Emmanuel".replace("m","q")
+
+a = "Awesome    "
+print(len(a))
+
+
+
+
+
+# 3.0 Variables
+
+a = 5
+b = 12
+a+b
+
+a=5
+b=12.5
+a+b
+
+a = 'My name is Awwesome '
+b = "I'm based in Lagos Nigeria"
+a+b
+
+import math
+math.sqrt(25)
+
+a = 5
+a**2
+
+squares= [a**2 for a in range(2,10)]
+squares
+
+a= input("What's your name")
+print("how are you ", a)
+
+n =int(input("Enter the number:"))
+result = n**0.5
+"Square root of", n, "is", result
+
+# 4.0 List
+
+# How to write numbers from 1 to 10
+i = 2
+while i <= 20:
+    print(i)
+    i=i+2
+
+
+countries = ['Nigeria', 'Ghana', 'Kenya', 'Zambia']
+countries
+
+countries[-3]
+
+## 4.1 Slicing: To access part of a list
+
+countries = ['Nigeria', 'Ghana', 'Kenya', 'Zambia']
+countries[0:4]
+
+countries = ['Nigeria', 'Ghana', 'Kenya', 'Zambia']
+countries[2:4]
+
+## 4.2 Add elements to a list
+
+#Append Method
+
+countries = ['Nigeria', 'Ghana', 'Kenya', 'Zambia']
+countries.append('Rwanda')
+countries
+
+#Insert Method
+
+countries = ['Nigeria', 'Ghana', 'Kenya', 'Zambia']
+
+countries.insert(0,'South Africa')
+countries
+
+## 4.3 Joining two List
+
+countries = ['Nigeria', 'Ghana', 'Kenya', 'Zambia']
+countries1 = ['UK', 'US', 'Canada', 'Germany']
+a = countries + countries1
+a
+
+merged = [countries,countries1]
+merged
+
+## 4.4 Removing an element
+
+countries = ['Nigeria', 'Ghana', 'Kenya', 'Zambia']
+countries.remove('Nigeria')
+countries
+
+countries = ['Nigeria', 'Ghana', 'Kenya', 'Zambia']
+del countries[1]
+countries
+
+## 4.5 Sorting a List
+
+numbers = [8,12,25,35,90,10,1]
+#numbers.sort()
+numbers.sort(reverse=True)
+numbers
+
+## 4.6 Updating a value in a list
+
+numbers = [8,12,25,35,90,10,1]
+numbers[2]=200
+numbers
+
+## 4.7 Copying a list
+
+countries = ['Nigeria', 'Ghana', 'Kenya', 'Zambia']
+countries1 = countries[:]
+countries1
+
+countries = ['Nigeria', 'Ghana', 'Kenya', 'Zambia']
+countries2 = countries.copy()
+countries2

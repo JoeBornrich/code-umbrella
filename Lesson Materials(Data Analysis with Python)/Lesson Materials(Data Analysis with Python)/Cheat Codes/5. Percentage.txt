@@ -1,0 +1,18 @@
+import pandas as pd
+data = pd.DataFrame({
+    "Name": ['Awesome', 'Jane', 'Emmanuel', 'Israel', 'Mensah', 'Mohammed', 'Alfred','Bobbi', 'Joyce','Juliet'],
+    "Courses": ['Power BI', 'Ms Excel', 'Tableau', 'Power BI', 'Tableau', 'Ms Excel','Ms Excel', 'Power BI', 'Power BI', 'Tableau'], 
+    "Actual Price": [5000,3000,4500,5000,4500,3000,3000,5000,5000,4500]
+})
+data
+data["Promo Price"] =data["Actual Price"]*0.8
+data
+data["PD%"] = (data["Actual Price"]-data["Promo Price"])*100/data["Actual Price"]
+data
+#data["Actual Price"].sum()
+data["PoT%"] = data["Actual Price"]*100/data["Actual Price"].sum()
+data
+data = data.round(decimals=1)
+data
+#data.to_excel("Percentage Lesson.xlsx", index=False)
+data

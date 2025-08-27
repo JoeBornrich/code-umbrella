@@ -1,0 +1,20 @@
+import pandas as pd
+df = pd.read_excel('Awesome Electronics.xlsx')
+df["M1"]= df["Order Date"].dt.strftime('%m')
+df
+df["M2"]= df["Order Date"].dt.month
+df
+df["Y1"]= df["Order Date"].dt.strftime('%Y')
+df
+df["Y2"]= df["Order Date"].dt.year
+df
+
+df["M3"] = df["Order Date"].apply(lambda x : x. strftime('%B'))
+df
+df["Y3"] = df["Order Date"].apply(lambda x : x. strftime('%Y'))
+df
+
+df["MY"] = df["Order Date"].apply(lambda x : x. strftime('%B-%Y'))
+df
+df["MY1"] = df["Order Date"].apply(lambda x : x. strftime('%Y-%B'))
+df

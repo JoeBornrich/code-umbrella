@@ -1,0 +1,126 @@
+import pandas as pd
+df = pd.read_excel('RSC.xlsx')
+df
+del df['Status']
+df
+del df['unnamed1']
+df
+
+#Q1:Delete the empty columns (Status and unnamed1)
+
+
+#Q2: On the Gender Column, Replace the M and F to Male and Female Respectively
+df
+df['Gender'] =df['Gender'].str.replace('Malealeale',"Male")
+df
+
+df['Gender'] =df['Gender'].str.replace('Femaleemale',"Female")
+df
+
+
+#Q3: On the Marital Status Column, replace 0 and 1 to Single and Married respectively
+df['Marital_Status']= df['Marital_Status'].astype(str)
+df['Marital_Status']= df['Marital_Status'].str.replace('0','Single')
+df
+df['Marital_Status']= df['Marital_Status'].str.replace('1','Married')
+df
+
+##### Some Orders were Unsuccessful i.e., incomplete. They are the ones with empty records in the Amount Columns.
+
+#Q4: Replace such empty cells with 0
+df
+df['Amount']=df['Amount'].fillna(0)
+df.head(10)
+dff=df
+dff
+
+### Using appropriate skill get the following information
+
+#Q5: Total number of Customers. Recall: Not Distinct; df['Cust_name'].count()
+dff
+dff['Cust_name'].nunique()
+
+#Sum of Orders by Occupation
+dff
+dff.pivot_table(index = "Occupation",
+               values = "Orders",
+              aggfunc = "sum")
+
+
+#To add Grand Total 
+dff
+dff.pivot_table(index = "Occupation",
+               values = "Orders",
+              aggfunc = "sum",
+              margins = True,
+    margins_name = 'Grand Total')
+    
+
+#To sort by Occupation(A-Z)
+t=dff.pivot_table(index = "Occupation",
+               values = "Orders",
+              aggfunc = "sum")
+t.sort_values(by=['Occupation'], ascending = True)
+
+#To sort by Orders(H-L)
+t=dff.pivot_table(index = "Occupation",
+               values = "Orders",
+              aggfunc = "sum")
+t.sort_values(by=['Orders'], ascending = False)
+
+#Q6: What Occupation placed the highest numbers of Orders and by what Sum of Orders
+Q6=dff.pivot_table(index = "Occupation",
+               values = "Orders",
+              aggfunc = "sum")
+
+Q6.sort_values(by=['Orders'], ascending = False)
+
+#The Top 10 Product_Category by Sum of Amount 
+S7=dff.pivot_table(index = "Product_Category",
+               values = "Amount",
+              aggfunc = "sum")
+
+S7.sort_values(by=['Amount'], ascending = False).head(10)
+
+#Q7:The Top 10 Product_Category by Sum of Amount and the corresponding percentage of total
+S7=dff.pivot_table(index = "Product_Category",
+               values = "Amount",
+              aggfunc = "sum")
+
+S77=S7.sort_values(by=['Amount'], ascending = False).head(10)
+S77["%"] = 100*S77['Amount']/S77['Amount'].sum()
+S77.round(0)
+
+
+# Orders by Gender, Age Group 
+dff.pivot_table(index = ['Gender', 'Age Group'],
+               values = "Orders",
+              aggfunc = "sum")
+
+#Q8 What Age Group of Male and Female respectively placed the highest number of Orders 
+#Sort Within Group with Orders from Highest to Lowest
+Q8=dff.pivot_table(index = ['Gender', 'Age Group'],
+               values = "Orders",
+              aggfunc = "sum")
+Q8.sort_values(['Gender','Orders'],ascending = False).groupby('Gender').head()
+
+#Q8 What Age Group of Male and Female respectively placed the highest number of Orders 
+#Sort Within Group with Orders from Lowest to Highest
+Q8=dff.pivot_table(index = ['Gender', 'Age Group'],
+               values = "Orders",
+              aggfunc = "sum")
+Q8.sort_values(['Gender','Orders']).groupby('Gender').head()
+
+#Q9: What do you observe from your answer to Question 8
+# The First three Group age are same for both Genders.
+
+#### Q10: Sales by States across the Marital Status
+
+Q10=dff.pivot_table(index = ['State'],
+                   columns = ['Marital_Status'],
+               values = "Amount",
+              aggfunc = "sum",
+                   margins = True,
+    margins_name = 'Grand Total')
+
+Q10.round(0)

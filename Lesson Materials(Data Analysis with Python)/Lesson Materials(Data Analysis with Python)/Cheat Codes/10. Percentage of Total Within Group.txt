@@ -1,0 +1,14 @@
+#Percentage of Total Within Group
+import pandas as pd
+#Create DataFrame
+pt=pd.DataFrame({'Club': ['Man U','Man U','Man U','Man U','Man U','Chelsea','Chelsea','Chelsea','Chelsea','Chelsea',],
+                'Points': [12,18,28,34,40,6,8,12,16,20]})
+#View DataFrame
+pt
+
+#To Calculate percentage of total points scored grouped by team
+pt['Team(%)'] = 100*pt['Points']/pt.groupby('Club')['Points'].transform('sum')
+#View updated DataFrame
+pt
+#Rounded to whole numbers
+pt.round(0)

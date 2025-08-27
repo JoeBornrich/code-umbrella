@@ -1,0 +1,242 @@
+import pandas as pd
+df = pd.read_excel('AR Data1.xlsx')
+df["Month"] = df["Order Date"].apply(lambda x : x. strftime('%B'))
+df["Year"] = df["Order Date"].apply(lambda x : x. strftime('%Y'))
+df
+
+df
+
+# FILTERS
+
+#Filter by a single Products
+#df.query("Products == 'Pin Charger'")
+
+#Other Products Except Pin Charger
+#df.query("Products !='Pin Charger'")
+
+#Two types of Products( Type A Charger & Pin Charger)
+#df.query("Products in ('Type A Charger','Pin Charger')")
+
+#Profit Greater than N-value
+#df.query("`Profit` >= 2000") 
+
+#Profit between N-Values
+#df.query("`Profit` >= 2000 and `Profit` <= 7000" )
+
+#Filter between Dates
+#df.query("`Order Date` >= '2022-02-01' and `Order Date` <= '2022-05-31'" )
+
+#Filter in ember months
+fff=df[df["Month"].str.contains("mber")]
+fff.to_excel("Filter mber.xlsx",index= False)
+
+
+# Multiple Condition Filtering
+
+#Details for Countries; Nigeria, Products; Type A Charger
+df.query("`Countries` == 'Nigeria' and `Products` == 'Type A Charger'" )
+
+#Details for Countries; Nigeria, Revenues >2000
+
+df.query("`Countries` == 'Nigeria' and `Revenues`> 2000 " )
+
+#Details of Cost, Profit and Products
+
+#df.query("`Costs`>=1000 and `Profit` <3000 and `Products` =='Type A Charger'" )
+df.query("`Costs`>=1000 and `Profit` <3000 and `Products` in('Type A Charger', 'Pin Charger')" )
+
+#Profits between Dates
+df.query("`Profit` >3000 and `Order Date` >= '2022-02-01' and `Order Date` <= '2022-05-31'" )
+
+#Profits in mber months
+#df.query("`Profit` > 3000 and `Order Date` >= '2022-02-01' and `Order Date` <= '2022-05-31'" )
+#`Products` in('Type A Charger', 'Pin Charger')
+
+df.query("`Profit` > 3000 and `Month` in('September','October', 'November', 'December')" )
+
+df.query("`Profit` > 3000 and `Order Date` > '2021-08-31' and `Order Date` > '2022-08-31'  " )
+
+# Pivot Table
+
+import pandas as pd
+df = pd.read_excel('AR Data1.xlsx')
+df["Month"] = df["Order Date"].apply(lambda x : x. strftime('%B'))
+df["Year"] = df["Order Date"].apply(lambda x : x. strftime('%Y'))
+df
+
+#Summary of the Products
+df.pivot_table(index = "Products",
+              aggfunc = "sum")
+
+#Summary of  Profit by Products
+df.pivot_table(index = "Products",
+               values = "Profit",
+              aggfunc = "sum")
+
+#Summary of  Profit, Revenues by Products
+df.pivot_table(index = "Products",
+               values = ["Profit","Revenues"],
+              aggfunc = "sum")
+
+#Summary of  Profit by Products and Countries
+df.pivot_table(index = "Products",
+               columns = "Countries",
+               values = "Profit",
+              aggfunc = "sum")
+
+#Summary of  Profit, Revenue by Products and Countries
+df.pivot_table(index = "Products",
+               columns = "Countries",
+               values = ["Profit","Revenues"],
+              aggfunc = "sum")
+
+#Summary of  Profit, by Month and Year
+df.pivot_table(index = "Month",
+               columns = "Year",
+               values = "Profit",
+              aggfunc = "sum")
+
+
+df.pivot_table(index = "Countries",
+               columns = "Products",
+               values = "Profit",
+              aggfunc = "sum")
+
+df.pivot_table(index = "Products",
+               columns = "Countries",
+               values = "Profit",
+              aggfunc = "count")
+
+#Summary of  Profit, by Month and Year
+
+df.pivot_table(index = "Month",
+               columns = "Year",
+               values = "Profit",
+              aggfunc = "sum")
+
+
+#To sort Month in Descending order
+dfpivot = df.pivot_table(index = "Month",
+               columns = "Year",
+               values = "Profit",
+              aggfunc = "sum")
+dfpivot.sort_values(by=['Month'], ascending = False)
+
+#To sort Month in Order of Jannuary - December
+dfpivot = df.pivot_table(index = "Month",
+               columns = "Year",
+               values = "Profit",
+              aggfunc = "sum")
+month_dict ={'January':1,'February':2,'March':3,'April':4,'May':5,'June':6,'July':7,'August':8,'September':9,'October':10,'November':11,'December':12}
+dftable = dfpivot.sort_values('Month', key = lambda x : x.apply(lambda x : month_dict[x]))
+dftable
+
+# Charts from Pivot Table
+
+#Recall the DataSet
+import pandas as pd
+df = pd.read_excel('AR Data1.xlsx')
+df["Month"] = df["Order Date"].apply(lambda x : x. strftime('%B'))
+df["Year"] = df["Order Date"].apply(lambda x : x. strftime('%Y'))
+df
+
+#Column Chart of  Profit by Products without labelling
+
+barchart=df.pivot_table(index = "Products",
+               values = "Profit",
+              aggfunc = "sum")
+
+barchart.plot(kind = "bar")
+
+#Column Chart of  Profit by Products with labelling
+from matplotlib import pyplot as plt
+barchart=df.pivot_table(index = "Products",
+               values = "Profit",
+              aggfunc = "sum")
+
+barchart.plot(kind="bar")
+
+plt.title("Profit by Products")
+plt.xlabel("Profits")
+plt.ylabel("Products")
+
+#Bar Chart of  Profit by Products with labelling
+from matplotlib import pyplot as plt
+barchart=df.pivot_table(index = "Month",
+               values = "Profit",
+              aggfunc = "sum")
+
+barchart.plot(kind="barh")
+
+plt.title("Profit by Month")
+plt.xlabel("Profit")
+plt.ylabel("Products")
+
+#Pie Chart of  Profit by Products with labelling
+from matplotlib import pyplot as plt
+piechart=df.pivot_table(index = "Countries",
+               values = "Revenues",
+              aggfunc = "sum")
+
+piechart.plot(kind="pie", y='Revenues',autopct='%1.0f%%')
+
+plt.title("Revenues by Counries")
+
+#Sorted Coloumn Chart
+from matplotlib import pyplot as plt
+dfpivot = df.pivot_table(index = "Month",
+                       values = "Profit",
+              aggfunc = "sum")
+month_dict ={'January':1,'February':2,'March':3,'April':4,'May':5,'June':6,'July':7,'August':8,'September':9,'October':10,'November':11,'December':12}
+dftable = dfpivot.sort_values('Month', key = lambda x : x.apply(lambda x : month_dict[x]))
+dftable.plot(kind ="bar")
+
+plt.title("Profit by Month")
+plt.xlabel("Months")
+plt.ylabel("Profit")
+
+#Line Chart
+#Sorted Coloumn Chart
+from matplotlib import pyplot as plt
+dfpivot = df.pivot_table(index = "Month",
+                       values = "Profit",
+              aggfunc = "sum")
+month_dict ={'January':1,'February':2,'March':3,'April':4,'May':5,'June':6,'July':7,'August':8,'September':9,'October':10,'November':11,'December':12}
+dftable = dfpivot.sort_values('Month', key = lambda x : x.apply(lambda x : month_dict[x]))
+dftable.plot.line()
+
+plt.title("Profit by Month")
+plt.xlabel("Months")
+plt.ylabel("Profit")
+
+
+# Area Chart
+#Sorted Coloumn Chart
+from matplotlib import pyplot as plt
+dfpivot = df.pivot_table(index = "Month",
+                       values = "Profit",
+              aggfunc = "sum")
+month_dict ={'January':1,'February':2,'March':3,'April':4,'May':5,'June':6,'July':7,'August':8,'September':9,'October':10,'November':11,'December':12}
+dftable = dfpivot.sort_values('Month', key = lambda x : x.apply(lambda x : month_dict[x]))
+dftable.plot.area()
+
+plt.title("Profit by Month")
+plt.xlabel("Months")
+plt.ylabel("Profit")
+
+
+#Saving a Chart
+#Sorted Coloumn Chart
+from matplotlib import pyplot as plt
+dfpivot = df.pivot_table(index = "Month",
+                       values = "Profit",
+              aggfunc = "sum")
+month_dict ={'January':1,'February':2,'March':3,'April':4,'May':5,'June':6,'July':7,'August':8,'September':9,'October':10,'November':11,'December':12}
+dftable = dfpivot.sort_values('Month', key = lambda x : x.apply(lambda x : month_dict[x]))
+dftable.plot.area()
+
+plt.title("Profit by Month")
+plt.xlabel("Months")
+plt.ylabel("Profit")
+
+plt.savefig('Area Chart.png')

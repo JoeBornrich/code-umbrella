@@ -1,0 +1,132 @@
+# Bar Charts
+
+# Create a Pandas series from a list of values ("[]") and plot it:
+import pandas as pd
+pd.Series([60, 50, 40, 30, 20]).plot(kind="bar")
+
+# Create a data frame with one column, "ages"
+import pandas as pd
+plotdata = pd.DataFrame({"ages": [60, 50, 40, 30, 20]})
+plotdata.plot(kind="bar")
+
+# Create a sample dataframe with index
+import pandas as pd
+plotdata = pd.DataFrame(
+    {"ages": [60, 50, 40, 30, 20]}, 
+    index=["Ada", "Bola", "Caro", "David", "Emily"])
+plotdata.plot(kind="bar")
+
+# Create a sample dataframe with index with another color (black)
+import pandas as pd
+plotdata = pd.DataFrame(
+    {"ages": [60, 50, 40, 30, 20]}, 
+    index=["Ada", "Bola", "Caro", "David", "Emily"])
+plotdata.plot(kind="bar", color ="red")
+
+# Create a sample dataframe with proper labelling
+import pandas as pd
+from matplotlib import pyplot as plt
+
+plotdata = pd.DataFrame(
+    {"ages": [10, 10, 42, 17, 37]}, 
+    index=["Ada", "Bola", "Caro", "David", "Emily"])
+plotdata.plot(kind="bar")
+
+plt.title("Sample Age of 5 Students")
+plt.xlabel("Students")
+plt.ylabel("Age")
+
+# Create a DataFrame with 3 columns:
+import pandas as pd
+from matplotlib import pyplot as plt
+plotdata = pd.DataFrame({
+    "2021":[40, 12, 10, 26, 36],
+    "2022":[19, 8, 30, 21, 38],
+    "2023":[10, 10, 42, 17, 37]
+    }, 
+    index=["Ada", "Bola", "Caro", "David", "Emily"])
+plotdata.head()
+
+
+
+# Create a DataFrame with 3 columns:
+import pandas as pd
+from matplotlib import pyplot as plt
+plotdata = pd.DataFrame({
+    "2021":[40, 12, 10, 26, 36],
+    "2022":[19, 8, 30, 21, 38],
+    "2023":[10, 10, 42, 17, 37]
+    }, 
+    index=["Ada", "Bola", "Caro", "David", "Emily"])
+plotdata.head()
+
+#Plot the (Unstacked) Bar Chart
+plotdata.plot(kind="bar")
+
+plt.title("Sample Age of 5 Students")
+plt.xlabel("Students")
+plt.ylabel("Age")
+
+#Create a DataFrame with 3 columns:
+import pandas as pd
+from matplotlib import pyplot as plt
+plotdata = pd.DataFrame({
+    "2021":[40, 12, 10, 26, 36],
+    "2022":[19, 8, 30, 21, 38],
+    "2023":[10, 10, 42, 17, 37]
+    }, 
+    index=["Ada", "Bola", "Caro", "David", "Emily"])
+plotdata.head()
+
+#Plot the (Stacked) Bar Chart
+plotdata.plot(kind="bar",stacked=True)
+
+plt.title("Sample Age of 5 Students")
+plt.xlabel("Students")
+plt.ylabel("Age")
+
+
+
+# Pie Chart
+
+# Create a data frame with one column, "ages"
+import pandas as pd
+plotdata = pd.DataFrame({"ages": [60, 50, 40, 30, 20]})
+plotdata.plot(kind="pie", y = 'ages')
+
+# Create a sample dataframe with index
+import pandas as pd
+plotdata = pd.DataFrame(
+    {"ages": [60, 50, 40, 30, 20]}, 
+    index=["Ada", "Bola", "Caro", "David", "Emily"])
+plotdata.plot(kind="pie", y = 'ages')
+
+import pandas as pd
+  
+# DataFrame of each sales rep
+dataframe = pd.DataFrame({'Name': ['Awesome', 'Awesome', 'Awesome',
+                                   'Awesome', 'Awesome', 'Mensah', 
+                                   'Mensah', 'Mensah', 'Mensah', 'Mensah',
+                                   'Joyce', 'Joyce', 'Joyce',
+                                   'Joyce', 'Joyce'],
+                          'Sales($)': [12, 9, 17, 19, 20, 
+                                                  11, 15, 12, 9, 4, 
+                                                  22, 19, 17, 19, 18]})
+  
+#dataframe
+dataframe.groupby(['Name']).sum().plot(kind='pie', y='Sales($)')
+
+#Percentage Data label
+import pandas as pd
+  
+# DataFrame of each sales rep
+dataframe = pd.DataFrame({'Name': ['Awesome', 'Awesome', 'Awesome',
+                                   'Awesome', 'Awesome', 'Mensah', 
+                                   'Mensah', 'Mensah', 'Mensah', 'Mensah',
+                                   'Joyce', 'Joyce', 'Joyce',
+                                   'Joyce', 'Joyce'],
+                          'Sales($)': [12, 9, 17, 19, 20, 
+                                                  11, 15, 12, 9, 4, 
+                                                  22, 19, 17, 19, 18]})
+  
+dataframe.groupby(['Name']).sum().plot(kind='pie', y='Sales($)',autopct='%1.0f%%')

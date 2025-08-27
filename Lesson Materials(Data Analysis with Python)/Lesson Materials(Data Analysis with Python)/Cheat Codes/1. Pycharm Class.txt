@@ -1,0 +1,77 @@
+1. Download and Installation (Python and  PyCharm)
+	To download Python: python.org/downloads/
+	To download Pycharm: jetbrains.com/pycharm
+
+2. Introduction to python programming
+#print('Hello Awesome\nWelcome')
+
+a = 5
+b = 7
+sum = a+b
+#print(sum)
+
+old_price = 500
+new_price = 500*1.20
+#print(new_price)
+
+
+
+3. Getting Inputs
+name = input('What is your name?')
+country = input('Whats is your country of origin? ')
+dob = input('What is your year of birth')
+age = 2023 - int(dob)
+print('Hello ' + name, 'you are ' + str(age) + ' years old ' + 'from ' + country)
+
+4. Download and Installation of Anaconda
+To download Anaconda: anaconda.com
+
+5. Working with Jupyter Notebok
+print("Welcome to Python class")
+a = 6
+b = 10
+c = a+b
+print(c)
+
+
+6. Data Types
+
+7. Variables
+
+8. List
+
+9. Sorting a List
+
+10. Intro to Data Analysis with Pandas(Loading Data)
+
+11. Basic Tips on Dataset with Pandas
+
+12. Creating Columns and Saving Worked File
+
+13. Result Analysis with Python
+
+14. Percentages
+
+15. Date Functions
+
+16. Filters
+
+17. Multiple Condition Filtering
+
+18. Pivot Table
+
+19. Sorting the Index (Month)  Column
+
+20. Introduction to Charts (Bar Chart)
+
+21. Introduction to Charts(Pie)
+
+22. Charts from Pivot Table
+
+23. Line and Area Chart & Saving
+
+24. Project Work A
+
+25. Project Work B
+
+26. Project Work C
